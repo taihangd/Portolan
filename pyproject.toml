@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "portolan"
+version = "1.0.0"
+description = "Portolan: Simulation-Free Hyperspherical Stream and Workload Synthesis for City-Scale Cross-Camera Trajectory Databases"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "numpy>=1.24",
+    "scipy>=1.10",
+    "torch>=2.0",
+    "matplotlib>=3.7",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = [
+    "portolan*",
+    "sim3d_pipeline*",
+    "ngw*",
+    "lgmm*",
+    "global_bm*",
+    "mcf_tracker*",
+    "online_clust*",
+    "vec_filter*",
+    "prob_path*",
+    "prov_ivm*",
+]

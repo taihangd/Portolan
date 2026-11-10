@@ -1,0 +1,81 @@
+{
+  "reid_model": {
+    "backbone": "ResNet-50 + 256-D BNNeck (BoT)",
+    "imagenet_pretrained": true,
+    "train_split": "VeRi-776 image_train ONLY (576 vehicles, 37,778 images; 0 overlap with VeRi test or CityFlow)",
+    "input_resolution": 192,
+    "embed_dim": 256,
+    "veri776_heldout_rank1": 0.9088,
+    "veri776_heldout_mAP": 0.6709,
+    "cityflow_oos_rank1": 0.4261,
+    "cityflow_oos_mAP": 0.2419
+  },
+  "calibration_protocol": {
+    "CityFlow-Seed": {
+      "cal_cameras": "c001..c009 (cam < 9, S01+S02)",
+      "eval_cameras": "c010..c040 (cam >= 9, S03+S04+S05, re-indexed 0..30)",
+      "cal_vehicles": 240,
+      "eval_vehicles": 426,
+      "cal_passes": 859,
+      "eval_passes": 2178,
+      "vehicle_overlap": 0,
+      "v_free_mps": 13.9
+    },
+    "VeRi-Seed": {
+      "cal_trips": "veh_id % 2 == 0",
+      "eval_trips": "veh_id % 2 == 1",
+      "cal_trip_count": 137,
+      "eval_trip_count": 136,
+      "cal_passes": 958,
+      "eval_passes": 1010,
+      "trip_overlap": 0,
+      "v_free_mps": 15.0
+    }
+  },
+  "CityFlow-Seed": {
+    "name": "CityFlow-Seed",
+    "calibration_split": "cal",
+    "n_snapshots": 859,
+    "n_cam": 9,
+    "n_veh": 240,
+    "n_directed_edges": 60,
+    "intra_cos_mean": 0.3837,
+    "intra_cos_std": 0.1955,
+    "inter_cos_mean": 0.0141,
+    "inter_cos_std": 0.1136,
+    "hard_neg_cos_mean": 0.5133,
+    "empirical_zipf_gamma": 5.9683,
+    "natural_hub_ratio": 0.0093,
+    "vmf_kappa_mean": 571.92,
+    "vmf_kappa_std": 85.79,
+    "cam_drift_angle_rad": 0.6734,
+    "travel_lognorm_sigma_free": 0.5588,
+    "travel_lognorm_sigma_cong": 0.4368,
+    "signal_delay_mean_sec": 18.47,
+    "queue_prob_base": 0.38,
+    "travel_free_ratio": 0.88
+  },
+  "VeRi-Seed": {
+    "name": "VeRi-Seed",
+    "calibration_split": "cal",
+    "n_snapshots": 958,
+    "n_cam": 20,
+    "n_veh": 137,
+    "n_directed_edges": 58,
+    "intra_cos_mean": 0.4776,
+    "intra_cos_std": 0.202,
+    "inter_cos_mean": 0.0099,
+    "inter_cos_std": 0.0918,
+    "hard_neg_cos_mean": 0.4596,
+    "empirical_zipf_gamma": 5.3405,
+    "natural_hub_ratio": 0.0209,
+    "vmf_kappa_mean": 754.35,
+    "vmf_kappa_std": 113.15,
+    "cam_drift_angle_rad": 0.6072,
+    "travel_lognorm_sigma_free": 0.6735,
+    "travel_lognorm_sigma_cong": 0.1576,
+    "signal_delay_mean_sec": 22.78,
+    "queue_prob_base": 0.3784,
+    "travel_free_ratio": 2.3968
+  }
+}

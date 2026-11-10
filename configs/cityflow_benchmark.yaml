@@ -1,0 +1,30 @@
+# Portolan Declarative Benchmark & Workload Configuration (Portolan-Tiny)
+benchmark:
+  scale_name: "Portolan-Tiny"       # Built-in scales: Portolan-Tiny | Small | Medium | CityScale
+  seed_profile: "CityFlow-Seed"       # Built-in profiles: CityFlow-Seed | VeRi-Seed
+  seed: 42
+
+topology_and_mobility:
+  n_cam: 40
+  n_veh: 2000
+  target_snapshots: 25000
+  horizon_sec: 2400.0
+  congestion_amplitude: 0.85
+  convoy_ratio: 0.08
+  follower_pairs: 15
+
+visual_manifold_and_defects:
+  embed_dim: 256                      # Unit hypersphere S^{d-1}, d in {256, 512}
+  rho_occ: 0.15                       # Occlusion / missed-detection rate in [0.0, 0.5]
+  sigma_tau: 2.5                      # Camera clock drift std (seconds) in [0.0, 30.0]
+  alpha_hub: 0.016                    # Embedding Black-Hole (hubness) defect ratio in [0.0, 0.05]
+  epsilon_dp: 0.0                     # Differential privacy budget (0.0 disables DP noise)
+  sigma_dp: 0.0                       # Edge-cloud DP Gaussian noise std
+
+query_workloads:
+  q1_num_queries: 200                 # Q1: Point Trajectory Recovery Queries
+  q2_min_hops: 4                      # Q2: Zero-Image Co-Movement Join minimum cameras k
+  q2_time_window_sec: 15.0            # Q2: Co-traversal time window delta_t (seconds)
+  q4_cert_budget_ratio: 0.01          # Q4a: Top-1% suspected-hub quarantine fraction (zero oracle probes)
+  q4_unlearn_vehicles: 35             # Q4: GDPR / privacy trajectory erasure requests
+  q4_dropout_cam_ratio: 0.05          # Q4: What-If camera dropout fraction
