@@ -4,7 +4,7 @@
 [![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](pyproject.toml)
 [![PyTorch 2.0+](https://img.shields.io/badge/PyTorch-2.0%2B-ee4c2c.svg)](requirements.txt)
 
-Open-source benchmark and evaluation suite for **Portolan**.
+Open-source benchmark, evaluation suite, and [companion supplemental material (`supplementary.pdf`)](supplementary.pdf) for **Portolan**.
 
 Portolan is a GPU-accelerated, tail-calibrated stream and query workload synthesizer for evaluating cross-camera trajectory recovery, vector similarity search, and provenance-enabled incremental view maintenance (IVM) at metropolitan scale. Instead of rendering 3D city assets and multi-camera video frames, Portolan couples arterial signal-wave mobility with $O(Nd)$ Givens $SO(d)$ camera rotations, von Mises-Fisher (vMF) appearance dispersion, fleet identity-twin cones, and glare-induced **Embedding Black-Holes** directly on the unit hypersphere $\mathbb{S}^{d-1}$.
 
@@ -47,6 +47,7 @@ Portolan/
 ├── tests/
 │   └── test_open_source.py          # Automated unit test suite
 ├── reproduce_all.sh                 # One-command verification and experiment runner
+├── supplementary.pdf                # Companion supplemental material
 ├── pyproject.toml                   # Package configuration
 ├── requirements.txt                 # Python dependencies
 └── LICENSE                          # MIT License
