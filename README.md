@@ -12,7 +12,7 @@ Portolan is a GPU-accelerated, tail-calibrated stream and query workload synthes
 
 ## 1. Repository Structure
 
-The repository is organized into modular packages for the core synthesizer, three synthesis baselines, and six evaluated trajectory/query paradigms:
+The repository is organized into modular packages for the core synthesizer, three synthesis baselines, and six evaluated trajectory/query packages (seven solver configurations including `MCF-Sharded`):
 
 ```text
 Portolan/
@@ -22,7 +22,7 @@ Portolan/
 │   ├── candidate_graph.py           # Shared GPU spatio-temporal candidate index
 │   ├── query_eval.py                # Unified BaseDBEngine interface & Q1-Q4 workload evaluators
 │   └── evaluation.py                # Distributional distances (W1, JSD, MMD), IDF1/MOTA & rank metrics
-├── data/                            # Bundled anonymized 256-D real-world feature streams (11.6 MB)
+├── data/                            # Bundled anonymized 256-D real-world feature streams (11.6 MiB)
 │   ├── real_cityflow_stream.npz     # Real-CityFlow cross-camera sightings & road topology
 │   ├── real_veri776_stream.npz      # Real-VeRi cross-camera sightings & ring-road topology
 │   └── real_seed_profiles.json      # Measured CityFlow-Seed and VeRi-Seed calibration profiles
@@ -56,7 +56,7 @@ Portolan/
 
 ## 2. Bundled Real-World Feature Streams
 
-To support out-of-the-box evaluation without redistributing raw licensed surveillance videos, `data/` includes anonymized 256-D unit-sphere ReID embeddings, camera timestamps, and road-graph coordinates (`11.6 MB` total) with disjoint calibration (`cal`) and evaluation (`eval`) splits:
+To support out-of-the-box evaluation without redistributing raw licensed surveillance videos, `data/` includes anonymized 256-D unit-sphere ReID embeddings, camera timestamps, and road-graph coordinates (`11.6 MiB` total) with disjoint calibration (`cal`) and evaluation (`eval`) splits:
 
 - **`Real-CityFlow`** (`data/real_cityflow_stream.npz`): `3,037` vehicle passes across `40` cameras (`S01`–`S05` from CityFlowV2), split into upstream calibration corridors (`S01+S02`) and disjoint downstream evaluation corridors (`S03–S05`).
 - **`Real-VeRi`** (`data/real_veri776_stream.npz`): `1,968` vehicle passes across `20` cameras (`273` trips from held-out `VeRi-776` test vehicles), split into disjoint calibration and evaluation trip sets.
@@ -91,7 +91,7 @@ CUDA_VISIBLE_DEVICES=0 bash reproduce_all.sh
 Individual experiment groups can also be executed modularly:
 ```bash
 python experiments/run_all_experiments.py --only exp1 --device cuda:0
-python experiments/run_all_experiments.py --only exp23,exp4,exp5,exp6 --device cuda:0
+python experiments/run_all_experiments.py --only exp23,exp3b,exp3c,exp4,exp5,exp6 --device cuda:0
 ```
 
 ---
